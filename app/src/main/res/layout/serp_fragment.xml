@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:text="searched results"/>
+            android:text="@string/searched_results"/>
 
         <TextView
             android:id="@+id/searched_results"
@@ -58,7 +58,7 @@
             android:layout_weight="1"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:text="position" />
+            android:text="@string/position" />
 
         <TextView
             android:id="@+id/position"

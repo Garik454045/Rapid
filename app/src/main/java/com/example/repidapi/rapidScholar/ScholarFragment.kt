@@ -21,8 +21,6 @@ class ScholarFragment : Fragment(){
     private var _binding: ScholarFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val myRetrofit = RapidRetrofit()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

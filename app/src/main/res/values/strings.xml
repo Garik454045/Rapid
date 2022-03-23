@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">RepidApi</string>
+    <string name="search">search</string>
+    <string name="sear">sear</string>
+    <string name="image">image</string>
+    <string name="schol">schol</string>
+    <string name="serp">serp</string>
+    <string name="searched_results">searched results</string>
+    <string name="position">position</string>
 </resources>
