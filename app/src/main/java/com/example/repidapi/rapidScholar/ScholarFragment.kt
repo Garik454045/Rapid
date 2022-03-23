@@ -35,19 +35,17 @@ class ScholarFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         val myViewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
-
-        binding.progressBar.isVisible = true
-
+        myViewModel.loaderLiveData.observe(viewLifecycleOwner){
+            binding.progressBar.isVisible = it
+        }
         myViewModel.scholarLiveData.observe(viewLifecycleOwner){
 
-            binding.progressBar.isVisible = false
 
             binding.ts.text = it.ts.toString()
             binding.total.text = it.total.toString()
             binding.deviceType.text = it.deviceType
             binding.deviceRegion.text = it.deviceRegion
         }
-
 
     }
 

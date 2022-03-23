@@ -18,9 +18,13 @@ class MyViewModel : ViewModel() {
 
     private val _queryLivedata: MutableLiveData<String> = MutableLiveData()
     val queryLivedata: LiveData<String> = _queryLivedata
+    private val _loaderLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    val loaderLiveData: LiveData<Boolean> = _loaderLiveData
 
     val serpLiveDataResponse: LiveData<SearchQueryResponse?> =
         Transformations.switchMap(_queryLivedata){
+
+            _loaderLiveData.value = true
 
        val liveData = MutableLiveData<SearchQueryResponse?>()
 
@@ -36,10 +40,13 @@ class MyViewModel : ViewModel() {
                 }
                 else
                     liveData.value = null
+                _loaderLiveData.value =false
+
             }
 
             override fun onFailure(call: Call<SearchQueryResponse>, t: Throwable) {
                 liveData.value = null
+                _loaderLiveData.value =false
             }
         })
 
@@ -48,7 +55,10 @@ class MyViewModel : ViewModel() {
 
     val scholarLiveData : LiveData<SearchResult> =
         Transformations.switchMap(_queryLivedata){
-             val liveData = MutableLiveData<SearchResult?>()
+
+            _loaderLiveData.value =true
+
+            val liveData = MutableLiveData<SearchResult?>()
 
             val res = serviceApi.rapidScholar(it)
             res.enqueue(object : Callback<SearchResult>{
@@ -60,12 +70,12 @@ class MyViewModel : ViewModel() {
                 }else{
                     liveData.value = null
                 }
-
+                    _loaderLiveData.value =false
                 }
 
                 override fun onFailure(call: Call<SearchResult>, t: Throwable) {
                     liveData.value = null
-
+                    _loaderLiveData.value =false
                 }
 
             })

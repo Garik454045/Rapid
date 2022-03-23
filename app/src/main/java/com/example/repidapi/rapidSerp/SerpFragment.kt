@@ -30,11 +30,10 @@ class SerpFragment: Fragment() {
 
         val myViewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
-        binding.progressBar.isVisible = true
-
-
+        myViewModel.loaderLiveData.observe(viewLifecycleOwner){
+            binding.progressBar.isVisible = it
+        }
         myViewModel.serpLiveDataResponse.observe(viewLifecycleOwner){
-            binding.progressBar.isVisible = false
 
             it?.run {
                 binding.position.text = this.position.toString()
